@@ -5,12 +5,23 @@
 requirejs.config({
   baseUrl: '.',
   paths: {
+    // Libs
     'text'         : 'lib/text',
     'underscore'   : 'lib/underscore',
-    'the_r_mod'    : 'js/mod_r',
-    'the_4_mod'    : 'js/mod_4',
-    'the_2_mod'    : 'js/mod_2',
-    'the_logo_mod' : 'js/mod_logo'
+
+    // Common modules
+    'plus'         : 'js/common/plus',
+    'equals'       : 'js/common/equals',
+    'backshop'     : 'js/common/backshop',
+     
+    // Logo modules
+    'requirejs'    : 'js/logos/requirejs',
+    'github'       : 'js/logos/github',
+    'otter'        : 'js/logos/otter',
+    'ottershop'    : 'js/logos/ottershop',
+
+    // Combinator
+    'combinator': 'js/combinator',
   },
   // Configure the loading of non AMD modules
   shim: {
@@ -20,17 +31,24 @@ requirejs.config({
   }
 });
 
-// var buttonR = document.getElementById('r');
-// var buttonR42 = document.getElementById('r42');
+// Click handler for displaying COMBO 1
+var combo1Button = document.getElementById('combo1');
 
-// buttonR.onclick = function() {
-//   require(['the_r_mod'], function(ModR) {
-//     ModR.render();
-//   });
-// };
+combo1Button.onclick = function() {
+  require(['combinator'], function(Combinator) {
+    var combinator = new Combinator('requirejs', 'github', 'backshop');
+    combinator.combine(document.getElementById('combo1-container'));
+  });
+  combo1Button.onclick = null;
+};
 
-// buttonR42.onclick = function() {
-//   require(['the_logo_mod'], function(ModLogo) {
-//     ModLogo.render();
-//   });
-// };
+// Click handler for displaying COMBO 2
+var combo2Button = document.getElementById('combo2');
+
+combo2Button.onclick = function() {
+  require(['combinator'], function(Combinator) {
+    var combinator = new Combinator('otter', 'backshop', 'ottershop');
+    combinator.combine(document.getElementById('combo2-container'));
+  });
+  combo2Button.onclick = null;
+};
